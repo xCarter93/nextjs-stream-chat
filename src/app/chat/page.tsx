@@ -28,24 +28,30 @@ export default function ChatPage() {
   }
 
   return (
-    <div>
+    <div className="h-screen">
       <Chat client={chatClient}>
-        <ChannelList
-          filters={{
-            type: "messaging",
-            members: { $in: [user.id] },
-          }}
-          sort={{ last_message_at: -1 }}
-          options={{ state: true, presence: true, limit: 10 }}
-        />
-        <Channel>
-          <Window>
-            <ChannelHeader />
-            <MessageList />
-            <MessageInput />
-          </Window>
-          <Thread />
-        </Channel>
+        <div className="flex h-full flex-row">
+          <div className="w-full max-w-[360px]">
+            <ChannelList
+              filters={{
+                type: "messaging",
+                members: { $in: [user.id] },
+              }}
+              sort={{ last_message_at: -1 }}
+              options={{ state: true, presence: true, limit: 10 }}
+            />
+          </div>
+          <div className="h-full w-full">
+            <Channel>
+              <Window>
+                <ChannelHeader />
+                <MessageList />
+                <MessageInput />
+              </Window>
+              <Thread />
+            </Channel>
+          </div>
+        </div>
       </Chat>
     </div>
   );
